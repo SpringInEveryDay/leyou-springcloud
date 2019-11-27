@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.1.RELEASE</version>
+        <version>2.0.1.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.leyou.demo</groupId>
@@ -61,7 +61,40 @@
             <artifactId>lombok</artifactId>
             <version>1.18.10</version>
         </dependency>
+
+        <!--加入Eureka的客户端依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
     </dependencies>
+
+    <!--想要将user-service这个服务作为服务提供者注册到Eureka注册中心就需要在其依赖中添加SpringCloud的依赖-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.RC1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!--Spring的仓库地址-->
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
 
     <build>
         <plugins>
